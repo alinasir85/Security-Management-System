@@ -9,7 +9,10 @@ if(isset($_REQUEST['button_user']))
     
     $user=$_REQUEST['login_user'];
     $pass=$_REQUEST['pass_user'];
-    
+    if($user==""||$pass=="")
+	{
+		$error="Cannot accept empty values.";
+	}
     $sql="Select * from users where login='$user' AND password='$pass'";
     $result= mysqli_query($con, $sql);
     $rows= mysqli_num_rows($result);

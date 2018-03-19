@@ -49,6 +49,11 @@ if(isset($_REQUEST['save']))
 $name=$_REQUEST['name'];
 $description=$_REQUEST['description'];
 
+ if($name==""||$description=="")
+	{
+		$error="Cannot accept empty values.";
+	}
+
 if($editFlag!=1)
 {
 $sql="select * from roles where name='$name'";

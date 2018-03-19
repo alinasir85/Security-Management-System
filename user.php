@@ -66,6 +66,10 @@ if(($_REQUEST['isadmin']))
     $isadmin=1;
 }
 
+ if($login==""||$pass==""||$name==""||$email=="")
+	{
+		$error="Cannot accept empty values.";
+	}
 
 if($editFlag!=1)
 {
