@@ -32,17 +32,18 @@ if(isset($_REQUEST['createNew']))
     header('location:user.php');
 }
 
-if(isset($_REQUEST['delete']))
+/*if(isset($_REQUEST['delete']))
 {
-    $uid=$_REQUEST['delete'];
+    $uid=$_REQUEST['delete']; 
     $sql="delete from users where userid=$uid";
     $result= mysqli_query($con, $sql);
     if($result)
     {
         header('location:userlist.php');
     }
+   
 }
-
+*/
 if(isset($_REQUEST['edit']))
 {
     $uid=$_REQUEST['edit'];
@@ -81,6 +82,27 @@ if(isset($_REQUEST['edit']))
         
        
         </style>
+        <script>
+            function confirm()
+            {
+                var a=confirm('Are you sure you want to delete this?');
+                if(a)
+                  { 
+                  <?php  $uid=$_REQUEST['delete']; 
+                    $sql="delete from users where userid=$uid";
+                    $result= mysqli_query($con, $sql);
+                    if($result)
+                  {
+                      header('location:userlist.php');
+                  }
+                  ?>
+                              return true;
+                   }
+                   
+                   return false;
+            }
+            </script>
+        
     </head>
     <body style="background-color:whitesmoke">
         <div class="container">
@@ -119,7 +141,7 @@ if(isset($_REQUEST['edit']))
                                     
                         }
                         $country= getCountryById($con, $record['countryid']);
-                        echo "<tr><td>".$record['userid']."</td><td>".$record['login']."</td><td>".$record['password']."</td><td>".$record['name']."</td><td>".$record['email']."</td><td>".$country['name']."</td><td>".$record['createdon']."</td><td>".$record['createdby']."</td><td>$admin</td><td><button type='submit' name='edit' value='".$record['userid']."'>Edit</button></td> <td><button type='submit' name='delete' value='".$record['userid']."'>DELETE</button></td></tr>";
+                        echo "<tr><td>".$record['userid']."</td><td>".$record['login']."</td><td>".$record['password']."</td><td>".$record['name']."</td><td>".$record['email']."</td><td>".$country['name']."</td><td>".$record['createdon']."</td><td>".$record['createdby']."</td><td>$admin</td><td><button type='submit' name='edit' value='".$record['userid']."'>Edit</button></td> <td><button type='submit' name='delete' value='".$record['userid']."' onclick=\"return(confirm());\">DELETE</button></td></tr>";
                     }
                 }
                 ?>

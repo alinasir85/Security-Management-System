@@ -31,7 +31,7 @@ if(isset($_REQUEST['createNew']))
     header('location:permission.php');
 }
 
-if(isset($_REQUEST['delete']))
+/*if(isset($_REQUEST['delete']))
 {
     $uid=$_REQUEST['delete'];
     $sql="delete from permissions where permissionid=$uid";
@@ -40,7 +40,7 @@ if(isset($_REQUEST['delete']))
     {
         header('location:permissionList.php');
     }
-}
+}*/
 
 if(isset($_REQUEST['edit']))
 {
@@ -53,6 +53,30 @@ if(isset($_REQUEST['edit']))
 
 <html>
     <head>
+        
+        
+          <script>
+            function confirm()
+            {
+                var a=confirm('Are you sure you want to delete this?');
+                if(a)
+                  { 
+                  <?php 
+                    $uid=$_REQUEST['delete'];
+    $sql="delete from permissions where permissionid=$uid";
+    $result= mysqli_query($con, $sql);
+    if($result)
+    {
+        header('location:permissionList.php');
+    }
+                  ?>
+                              return true;
+                   }
+                   
+                   return false;
+            }
+            </script>
+        
             <style>
             
              
@@ -109,7 +133,7 @@ if(isset($_REQUEST['edit']))
                 {
                     while($record= mysqli_fetch_assoc($result))
                     {
-                        echo "<tr><td>".$record['permissionid']."</td><td>".$record['name']."</td><td>".$record['description']."</td><td>".$record['createdon']."</td><td>".$record['createdby']."</td><td><button type='submit' name='edit' value='".$record['permissionid']."'>Edit</button></td> <td><button type='submit' name='delete' value='".$record['permissionid']."'>DELETE</button></td></tr>";
+                        echo "<tr><td>".$record['permissionid']."</td><td>".$record['name']."</td><td>".$record['description']."</td><td>".$record['createdon']."</td><td>".$record['createdby']."</td><td><button type='submit' name='edit' value='".$record['permissionid']."'>Edit</button></td> <td><button type='submit' name='delete' value='".$record['permissionid']."' onclick=\"return(confirm());\">DELETE</button></td></tr>";
                     }
                 }
                 ?>
