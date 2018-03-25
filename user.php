@@ -1,6 +1,6 @@
 <?php
 require 'conn.php';session_start();require 'utility.php';
- if(!(isset($_SESSION["user"])))
+ if($_SESSION["user"]==NULL)
  {
       header('location:LOGIN.php');
  }
@@ -61,15 +61,16 @@ $name=$_REQUEST['name'];
 $email=$_REQUEST['email'];
 $country=$_REQUEST['country'];
 $isadmin=0;
-if(($_REQUEST['isadmin']))
+if(isset($_REQUEST['isadmin']))
 {
     $isadmin=1;
 }
 
- if($login==""||$pass==""||$name==""||$email=="")
-	{
-		$error="Cannot accept empty values.";
-	}
+if($login=="" ||$pass==""||$name==""||$email=="")
+{
+    $error="Cannot Accept Empty values.";
+}
+
 
 if($editFlag!=1)
 {
@@ -212,7 +213,7 @@ else
         <button class="header" onclick="window.location='rolePermissionList.php'">Role-Permissions Management</button>
         <button class="header" onclick="window.location='UserRoleList.php'">User-Role Management</button>
         <button class="header" onclick="window.location='loginHistory.php'">Login History</button>
-        <button class="header" onclick="window.location='LOGIN.php'">Logout</button>
+        <button class="header" onclick="window.location='logout.php'">Logout</button>
         </div>
         <br><br><br>
         

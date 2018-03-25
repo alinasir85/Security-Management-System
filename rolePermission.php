@@ -2,7 +2,7 @@
 require 'conn.php';
 require 'utility.php';
 session_start();
- if(!(isset($_SESSION["user"])))
+ if($_SESSION["user"]==NULL)
  {
       header('location:LOGIN.php');
  }
@@ -173,7 +173,7 @@ else
         <button class="header" onclick="window.location='rolePermissionList.php'">Role-Permissions Management</button>
         <button class="header" onclick="window.location='UserRoleList.php'">User-Role Management</button>
         <button class="header" onclick="window.location='loginHistory.php'">Login History</button>
-        <button class="header" onclick="window.location='LOGIN.php'">Logout</button>
+        <button class="header" onclick="window.location='logout.php'">Logout</button>
         </div>
         <br><br><br>
         

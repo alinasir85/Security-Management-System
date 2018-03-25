@@ -4,7 +4,7 @@
 
 $adminflag=0;
 
- if(!(isset($_SESSION["user"])))
+ if($_SESSION["user"]==NULL)
  {
       header('location:LOGIN.php');
  }
@@ -57,13 +57,13 @@ if($adminflag==1)
     <body style="background-color:whitesmoke">
         <div class="btn-group">
         <button class="header" onclick="window.location='Home.php'">Home</button>
-        <button class="header" onclick="window.location='userList.php'">User Management</button>
-        <button class="header" onclick="window.location='roleList.php'">Role Management</button>
-        <button class="header" onclick="window.location='permissionList.php'">Permission Management</button>
-        <button class="header" onclick="window.location='rolePermissionList.php'">Role-Permissions Management</button>
-        <button class="header" onclick="window.location='UserRoleList.php'">User-Role Management</button>
+        <button class="header" onclick="window.location='user.php'">User Management</button>
+        <button class="header" onclick="window.location='role.php'">Role Management</button>
+        <button class="header" onclick="window.location='permission.php'">Permission Management</button>
+        <button class="header" onclick="window.location='rolePermission.php'">Role-Permissions Management</button>
+        <button class="header" onclick="window.location='UserRole.php'">User-Role Management</button>
         <button class="header" onclick="window.location='loginHistory.php'">Login History</button>
-        <button class="header" onclick="window.location='LOGIN.php'">Logout</button>
+        <button class="header" onclick="window.location='logout.php'">Logout</button>
         </div>
         <div style="clear:both">
         <font style="font-size:50px;padding-left:100px;font-family: Arial;"><b>Welcome Admin</b></font>   
@@ -118,7 +118,7 @@ else if($adminflag==0)
         ?>
         <div class="btn-group">
         <button class="header" onclick="window.location='Home.php'" style='width:10%'>Home</button>
-        <button class="header" onclick="window.location='LOGIN.php'" style='width:90%;text-align:left; ' >Logout</button>
+        <button class="header" onclick="window.location='logout.php'" style='width:90%;text-align:left; ' >Logout</button>
         </div>
         <br><br>
         
@@ -165,3 +165,4 @@ else if($adminflag==0)
 
 
 <?php } ?>
+
